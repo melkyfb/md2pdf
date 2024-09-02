@@ -38,6 +38,8 @@ install:
 	@$(PYTHON) -m py_compile $(SRC)
 	@mkdir -p $(INSTALL_DIR)
 	@cp $(SRC) $(INSTALL_DIR)/$(EXEC)
+	@cp style.css $(INSTALL_DIR)/
+	@echo "Copied style.css to $(INSTALL_DIR)"
 	@chmod +x $(INSTALL_DIR)/$(EXEC)
 	@sed -i '1s|^|#!/usr/bin/env python3\n|' $(INSTALL_DIR)/$(EXEC)
 	@echo "Installation complete. You can now use 'md2pdf' command."

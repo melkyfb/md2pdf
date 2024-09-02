@@ -42,7 +42,14 @@ def create_full_html(html_content):
     """
 
 def convert_html_to_pdf(html_content, output_file):
-    HTML(string=html_content).write_pdf(output_file)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    css_file = os.path.join(script_dir, 'style.css')
+    
+    if os.path.exists(css_file):
+        HTML(string=html_content).write_pdf(output_file, stylesheets=[css_file])
+    else:
+        print(f"Warning: style.css not found in {script_dir}. Proceeding without custom styles.")
+        HTML(string=html_content).write_pdf(output_file)
 
 
 def main():
